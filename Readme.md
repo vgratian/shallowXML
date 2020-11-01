@@ -1,10 +1,11 @@
 
 ## shallowXML
-I was too lazy to read about available libs, so I started my own XML parser. I started learning Go only yesteray, so I couldn't really do everything the way I wanted (e.g. I don't konw how to declare methods, so I used functions).
+A simple XML parser that first creates a Root element and then adds child elements. I started learning Go only yesteray, so I couldn't really do everything the way I wanted (e.g. I did't konw how to declare methods, so I used functions instead).
 
-The end goal is to write a parser that is linear to the size of the input string and also stores nothing more than that single string in memory (the way I'll do it is to store the string in the root element and use pointers in all of it's children.)... maybe even less.
+The end-goal is to write a parser that is linear in time to the size of the input string and also stores nothing more than that one string in memory (the way I'll do it is to store the string in the root element and use pointers in all of it's children.).
 
-I will try to get similar API as that of [lxml](https://lxml.de/) / [elementree](http://effbot.org/zone/element.htm).
+The goal is also to have API similiar to that of [lxml](https://lxml.de/) / [elementree](http://effbot.org/zone/element.htm).
+
 
 ## How to use
 
@@ -31,4 +32,4 @@ and output is:
 
 ## Disclaimer
 
-Of course this is just a toy-project / draft. No checks are done to detect invalid XML syntax, no error handling. XML elements with attributes will not be recognized.
+Of course this is just a toy-project / draft. No checks are done to detect invalid XML syntax, no error handling. XML elements with attributes (e.g. `<staff size="2">`) will not be recognized.
