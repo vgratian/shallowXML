@@ -76,17 +76,15 @@ func GetChildren(e Element) []Element {
     Returns list of direct children of element
     */   
     var children []Element
-    var k, p, x int
-    var first string
-    var num int
+    var k, p, q int
+    var open_tag string
 
-    num = 0
 
     children = []Element{}
 
     if e.xml[e.j+1] == '<' {
         p = e.j + 1
-	    first = ""
+	    open_tag = ""
         
         for p < e.m {
 
@@ -96,21 +94,20 @@ func GetChildren(e Element) []Element {
 
                     tag := e.xml[k+1:p]
 
-                    if first == "" {
-                        first = tag
-                        x = k
+                    if open_tag == "" {
+                        open_tag = tag
+                        q = k
                     } 
 
                 } else {
                     tag := e.xml[k+2:p]
 
-                    if first == tag {
-                        s := e.xml[x:p+1]
+                    if open_tag == tag {
+                        s := e.xml[q:p+1]
                         child := NewElement(s)
                         children = append(children, child)
-                        num += 1
-                        x = p
-                        first = ""
+                        q = p
+                        open_tag = ""
                     } 
                 }
 
