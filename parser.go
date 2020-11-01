@@ -62,11 +62,12 @@ func GetContent(e Element) string {
     if e.xml = "<version>1.0</version>", 
     will return: "1.0"
 
-    */    
-    if e.xml[e.j+1] == '<' {
-        return ""
+    */
+    var c string
+    if e.xml[e.j+1] != '<' {
+        c = e.xml[e.j+1:e.m]
     }
-    return e.xml[e.j+1:e.m]
+    return c
 }
 
 
@@ -74,14 +75,14 @@ func GetChildren(e Element) []Element {
     /*
     Returns list of direct children of element
     */   
-    var kids []Element
+    var children []Element
     var k, p, x int
     var first string
     var num int
 
     num = 0
 
-    kids = []Element{}
+    children = []Element{}
 
     if e.xml[e.j+1] == '<' {
         p = e.j + 1
@@ -106,7 +107,7 @@ func GetChildren(e Element) []Element {
                     if first == tag {
                         s := e.xml[x:p+1]
                         child := NewElement(s)
-                        kids = append(kids, child)
+                        children = append(children, child)
                         num += 1
                         x = p
                         first = ""
@@ -121,7 +122,7 @@ func GetChildren(e Element) []Element {
         }
     }
 
-    return kids
+    return children
 }
 
 
